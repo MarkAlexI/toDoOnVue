@@ -10,7 +10,12 @@
 <body>
   <div id="todoapp">
     <h2>ToDo List</h2>
-    {{ message }}
+      <ol>
+        <li v-for="todo in todos">
+          <p>Title : {{todo.title}}</p>
+          <p>Text : {{todo.comment}}</p>
+        </li>
+      </ol>
   </div>
   <script defer="true" src="./run.js" type="text/javascript" charset="utf-8"></script>
 </body>
