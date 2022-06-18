@@ -19,12 +19,12 @@ const app = Vue.createApp({
 app.component('todoitem', {
   props: ['todo', 'index'],
   template: `<div>
-              <p>Number of record: {{index}} </p> <br>
+              <p>Number of record: {{index}}</p>
               <p>Title: {{todo.title}} <br> Text: {{todo.comment}} </p>
               <button v-on:click="todoDelete(index)">Delete</button>
             </div>`,
   methods: {
-    todoDelete(index) {
+    todoDelete: function(index) {
       this.$emit('tododelete', index);
     },
   },
