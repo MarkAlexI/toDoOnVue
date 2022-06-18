@@ -11,6 +11,11 @@
   <div id="todoapp">
     <h2>ToDo List</h2>
       <div>
+        <todoform :todos="todos"
+                  class="todoform"
+        ></todoform>
+      </div>
+      <div>
         <todoitem v-for="(todo, index) in todos"
                   :todo="todo"
                   :index="index"
