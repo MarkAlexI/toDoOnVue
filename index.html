@@ -16,14 +16,9 @@
                   :index="index"
                   :key="index"
                   v-on:tododelete="remove"
-        ></todoitem></todoitem>
+                  class="todoitem"
+        ></todoitem>
       </div>
-      <ol>
-        <li v-for="(todo, index) in todos" v-on: click="remove(index)">
-          <p>Title : {{todo.title}}</p>
-          <p>Text : {{todo.comment}}</p>
-        </li>
-      </ol>
   </div>
   <script defer="true" src="./run.js" type="text/javascript" charset="utf-8"></script>
 </body>
