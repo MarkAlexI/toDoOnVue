@@ -19,7 +19,7 @@ const app = Vue.createApp({
 app.component('todoitem', {
   props: ['todo', 'index'],
   template: `<div>
-              <p>Number of record: {{index}}
+              <p>Number of record: {{index + 1}}
               <br> Title: {{todo.title}} <br> Text: {{todo.comment}} </p>
               <button v-on:click="todoDelete(index)">Delete</button>
             </div>`,
