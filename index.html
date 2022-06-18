@@ -10,6 +10,11 @@
 <body>
   <div id="todoapp">
     <h2>ToDo List</h2>
+      <div>
+        <todoitem v-for="(todo, index) in todos">
+          
+        </todoitem>
+      </div>
       <ol>
         <li v-for="(todo, index) in todos" v-on: click="remove(index)">
           <p>Title : {{todo.title}}</p>
