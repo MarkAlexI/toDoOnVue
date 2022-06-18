@@ -15,7 +15,7 @@
                   :todo="todo"
                   :index="index"
                   :key="index"
-                  v-on="tododelete(index)"
+                  v-on:tododelete="remove"
         ></todoitem></todoitem>
       </div>
       <ol>
