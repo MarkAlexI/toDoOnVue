@@ -10,7 +10,7 @@ const app = Vue.createApp({
   },
   
   methods: {
-    remove(index) {
+    remove: function(index) {
       this.todos.splice(index, 1);
     },
   },
