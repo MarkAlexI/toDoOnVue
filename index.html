@@ -11,9 +11,12 @@
   <div id="todoapp">
     <h2>ToDo List</h2>
       <div>
-        <todoitem v-for="(todo, index) in todos">
-          
-        </todoitem>
+        <todoitem v-for="(todo, index) in todos"
+                  :todo="todo"
+                  :index="index"
+                  :key="index"
+                  v-on="todoDelete(index)"
+        ></todoitem></todoitem>
       </div>
       <ol>
         <li v-for="(todo, index) in todos" v-on: click="remove(index)">
