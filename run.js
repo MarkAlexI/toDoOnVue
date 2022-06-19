@@ -38,8 +38,7 @@ app.component('todoform', {
   template: `<div>
               <input type="text" v-model="todo.title" size="4" />
               <button v-on:click="todoAdd">Add new task</button>
-              <br>
-              <input type="text" v-model="todo.comment" size="8" />
+              <input type="text" v-model="todo.comment" />
             </div>`,
   methods: {
     todoAdd(event) {
