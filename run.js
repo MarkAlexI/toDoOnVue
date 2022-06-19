@@ -4,8 +4,7 @@ const app = Vue.createApp({
   data() {
      return {
        message: 'Hello from Vue',
-       todos: [{title: 'First', comment: 'Wright code'},
-         {title: '17 June', comment: 'Buy flowers'}],
+       todos: [],
      }
   },
   
@@ -13,6 +12,17 @@ const app = Vue.createApp({
     remove: function(index) {
       this.todos.splice(index, 1);
     },
+  },
+  
+  created: function() {
+    if (localStorage.length === 0) {
+      this.todos.push({title: 'First', comment: 'Wright code'}, {title: '17 June', comment: 'Buy flowers'});
+      return;
+    }
+    for (let i = 0; i < localStorage.length; i++) {
+      let key = localStorage.key(i);
+      this.todos.push({title: key, comment: localStorage.getItem(key)});
+    }
   },
 });
 
@@ -32,6 +42,7 @@ app.component('todoform', {
   methods: {
     todoAdd(event) {
       this.todos.push({title: this.todo.title, comment: this.todo.comment});
+      localStorage.setItem(this.todo.title, this.todo.comment);
     },
   },
 });
