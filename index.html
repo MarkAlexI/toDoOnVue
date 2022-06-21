@@ -19,7 +19,7 @@
         <todoitem v-for="(todo, index) in todos"
                   :todo="todo"
                   :index="index"
-                  :key="index"
+                  :key="todo.id"
                   v-on:tododelete="remove"
                   class="todoitem"
         ></todoitem>
