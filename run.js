@@ -18,12 +18,13 @@ const app = Vue.createApp({
   
   created: function() {
     if (localStorage.length === 0) {
-      this.todos.push({title: 'First', comment: 'Wright code'}, {title: '17 June', comment: 'Buy flowers'});
+      this.todos.push({id: 'gu3c8lRTm', title: 'First', comment: 'Wright code'}, {id: '8orR6Ki90', title: '17 June', comment: 'Buy flowers'});
       return;
     }
     for (let i = 0; i < localStorage.length; i++) {
       let key = localStorage.key(i);
-      this.todos.push({title: key, comment: localStorage.getItem(key)});
+      const [title, comment] = localStorage.getItem(key).split('%^&');
+      this.todos.push({id: key, title: title, comment: comment});
     }
   },
 });
@@ -42,8 +43,11 @@ app.component('todoform', {
             </div>`,
   methods: {
     todoAdd(event) {
-      this.todos.push({title: this.todo.title, comment: this.todo.comment});
-      localStorage.setItem(this.todo.title, this.todo.comment);
+      const newId = setId();
+      const glue = '%^&';
+      const itemValue = this.todo.title + glue + this.todo.comment;
+      this.todos.push({id: newId, title: this.todo.title, comment: this.todo.comment});
+      localStorage.setItem(newId, itemValue);
     },
   },
 });
