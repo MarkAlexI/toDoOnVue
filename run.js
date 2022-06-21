@@ -10,7 +10,7 @@ const app = Vue.createApp({
   
   methods: {
     remove: function(index) {
-      let removedTodo = this.todos[index].title;
+      let removedTodo = this.todos[index].id;
       localStorage.removeItem(removedTodo);
       this.todos.splice(index, 1);
     },
