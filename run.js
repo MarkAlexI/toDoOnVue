@@ -43,10 +43,11 @@ app.component('todoform', {
             </div>`,
   methods: {
     todoAdd(event) {
+      const createdTime = Date.now();
       const newId = setId();
       const glue = '%^&';
-      const itemValue = this.todo.title + glue + this.todo.comment;
-      this.todos.push({id: newId, title: this.todo.title, comment: this.todo.comment});
+      const itemValue = createdTime + glue + this.todo.title + glue + this.todo.comment;
+      this.todos.push({id: newId, created: createdTime, title: this.todo.title, comment: this.todo.comment});
       localStorage.setItem(newId, itemValue);
     },
   },
