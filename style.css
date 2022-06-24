@@ -43,6 +43,7 @@ span {
   margin: 0px 0px 10px 0px;
   min-width: 100px;
   box-sizing:border-box;
+  border: 1px solid black;
 }
 
 .todoform button {

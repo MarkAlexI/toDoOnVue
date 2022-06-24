@@ -43,6 +43,14 @@ app.component('todoform', {
             </div>`,
   methods: {
     todoAdd(event) {
+      if (this.todo.title === "") {
+        this.todo.title = "Title";
+        return;
+      }
+      if (this.todo.comment === "") {
+        this.todo.comment = "Do something.";
+        return;
+      }
       const createdTime = Date.now();
       const newId = setId();
       const glue = '%^&';
