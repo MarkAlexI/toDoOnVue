@@ -18,13 +18,13 @@ const app = Vue.createApp({
   
   created: function() {
     if (localStorage.length === 0) {
-      this.todos.push({id: 'gu3c8lRTm', title: 'First', comment: 'Wright code'}, {id: '8orR6Ki90', title: '17 June', comment: 'Buy flowers'});
+      this.todos.push({id: 'gu3c8lRTm', created: 1, title: 'First', comment: 'Wright code'}, {id: '8orR6Ki90', created: 2, title: '17 June', comment: 'Buy flowers'});
       return;
     }
     for (let i = 0; i < localStorage.length; i++) {
       let key = localStorage.key(i);
-      const [title, comment] = localStorage.getItem(key).split('%^&');
-      this.todos.push({id: key, title: title, comment: comment});
+      const [createdTime, title, comment] = localStorage.getItem(key).split('%^&');
+      this.todos.push({id: key, created: createdTime, title: title, comment: comment});
     }
   },
 });
