@@ -41,6 +41,10 @@ const app = Vue.createApp({
     endIndex() {
       return this.page * 3;
     },
+
+    hasNextPage() {
+      return this.todos.length > this.endIndex;
+    },
   }
 });
 

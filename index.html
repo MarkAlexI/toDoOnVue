@@ -24,11 +24,24 @@
                   class="todoitem"
         ></todoitem>
       </div>
-      <div class="pagination">
+      <template v-if="todos.length > 0" class="pagination">
         <div class="">
           {{ page }}
+          <br>
+          <button
+                  v-if="page > 1"
+                  v-on:click="page = page - 1"
+          >
+            Previous page
+          </button>
+          <button 
+                  v-if="hasNextPage"
+                  v-on:click="page = page + 1"
+          >
+            Next page
+          </button>
         </div>
-      </div>
+      </template>
   </div>
   <script defer="true" src="./run.js" type="text/javascript" charset="utf-8"></script>
 </body>
