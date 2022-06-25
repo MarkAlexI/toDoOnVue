@@ -27,6 +27,12 @@ const app = Vue.createApp({
       this.todos.push({id: key, created: createdTime, title: title, comment: comment});
     }
   },
+
+  computed: {
+    freshTodos: function() {
+      return this.todos.slice();
+    },
+  }
 });
 
 app.component('todoform', {
