@@ -53,11 +53,14 @@ span {
   padding: 10px;
 }
 
+.warning {
+  background-color:red;
+}
+
 .todoitem {
   padding: 10px;
   border: 1px solid black;
   background-color: lightgreen;
-  overflow: scroll;
 }
 
 button {

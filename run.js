@@ -37,9 +37,9 @@ app.component('todoform', {
     }
   },
   template: `<div>
-              <input v-on:keyup.enter="todoAdd" type="text" v-model="todo.title" size="4" />
+              <input v-on:keyup.enter="todoAdd" type="text" v-model="todo.title" size="4" v-bind:class="{warning: this.todo.title.length === 0}" />
               <button v-on:click="todoAdd">Add new task</button>
-              <input v-on:keyup.enter="todoAdd" type="text" v-model="todo.comment" />
+              <input v-on:keyup.enter="todoAdd" type="text" v-model="todo.comment" v-bind:class="{warning: this.todo.comment.length === 0}" />
             </div>`,
   methods: {
     todoAdd(event) {
