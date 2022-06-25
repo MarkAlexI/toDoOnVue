@@ -5,6 +5,7 @@ const app = Vue.createApp({
      return {
        message: 'Hello from Vue',
        todos: [],
+       page: 1,
      }
   },
   
@@ -30,7 +31,15 @@ const app = Vue.createApp({
 
   computed: {
     freshTodos: function() {
-      return this.todos.slice();
+      return this.todos.slice(this.startIndex, this.endIndex);
+    },
+
+    startIndex() {
+      return (this.page - 1) * 3;
+    },
+
+    endIndex() {
+      return this.page * 3;
     },
   }
 });
