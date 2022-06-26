@@ -83,7 +83,7 @@ app.component('todoform', {
 app.component('todoitem', {
   props: ['todo', 'index'],
   template: `<div>
-              <p><span>Number of record: </span>{{index + 1}}
+              <p><span>Number of record: </span>{{startIndex + index + 1}}
               <br> <span>Title: </span>{{todo.title}} <br> <span>Text: </span>{{todo.comment}} </p>
               <button v-on:click="todoDelete(index)">Delete</button>
             </div>`,
