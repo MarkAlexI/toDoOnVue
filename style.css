@@ -69,9 +69,14 @@ button {
   border: 2px solid rgb(72, 11, 11);
   border-radius: 20px;
   cursor: pointer;
+  margin: 0px 10px;
 }
 
 button:hover {
   background-color: rgb(184, 175, 175);
   border: 2px solid rgb(118, 20, 20);
+}
+
+.pagination {
+  padding: 0px 10px 10px 10px;
 }
