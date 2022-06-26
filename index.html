@@ -26,7 +26,8 @@
       </div>
       <template v-if="todos.length > 0" class="pagination">
         <div class="">
-          {{ page }}
+          <p>Page {{ page }}.</p>
+          <p>Records {{ startIndex + 1 }} - {{ endIndex }} from {{ todos.length }}.</p>
           <br>
           <button
                   v-if="page > 1"
