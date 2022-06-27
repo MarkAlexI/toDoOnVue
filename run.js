@@ -87,6 +87,7 @@ app.component('todoitem', {
               <p><span>Number of record: </span>{{startIndex + index + 1}}
               <br> <span>Title: </span>{{todo.title}} <br> <span>Text: </span>{{todo.comment}} </p>
               <button v-on:click="todoDelete(index)">Delete</button>
+              <button v-on:click="todo.done = !todo.done">Done</button>
             </div>`,
   methods: {
     todoDelete: function(index) {
