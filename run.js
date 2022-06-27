@@ -39,7 +39,7 @@ const app = Vue.createApp({
     },
 
     endIndex() {
-      return this.page * 3;
+      return Math.min(this.page * 3, this.todos.length);
     },
 
     hasNextPage() {
