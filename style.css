@@ -63,6 +63,10 @@ span {
   background-color: lightgreen;
 }
 
+.done {
+  background-color: cadetblue;
+}
+
 button {
   font-size: 20px;
   background-color: #fff;
