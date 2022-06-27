@@ -18,7 +18,7 @@
       <div>
         <todoitem v-for="(todo, index) in freshTodos"
                   :todo="todo"
-                  :index="index"
+                  :index="startIndex + index + 1"
                   :key="todo.id"
                   v-on:tododelete="remove"
                   class="todoitem"

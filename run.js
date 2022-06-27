@@ -84,7 +84,7 @@ app.component('todoform', {
 app.component('todoitem', {
   props: ['todo', 'index'],
   template: `<div v-bind:class="{done: todo.done}">
-              <p><span>Number of record: </span>{{startIndex + index + 1}}
+              <p><span>Number of record: </span>{{index}}
               <br> <span>Title: </span>{{todo.title}} <br> <span>Text: </span>{{todo.comment}} </p>
               <button v-on:click="todoDelete(index)">Delete</button>
               <button v-on:click="todo.done = !todo.done">Done</button>
