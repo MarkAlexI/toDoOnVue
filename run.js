@@ -19,13 +19,13 @@ const app = Vue.createApp({
   
   created: function() {
     if (localStorage.length === 0) {
-      this.todos.push({id: 'gu3c8lRTm', created: 1, title: 'First', comment: 'Wright code'}, {id: '8orR6Ki90', created: 2, title: '17 June', comment: 'Buy flowers'});
+      this.todos.push({id: 'gu3c8lRTm', created: 1, title: 'First', comment: 'Wright code', done: false}, {id: '8orR6Ki90', created: 2, title: '17 June', comment: 'Buy flowers', done: true});
       return;
     }
     for (let i = 0; i < localStorage.length; i++) {
       let key = localStorage.key(i);
-      const [createdTime, title, comment] = localStorage.getItem(key).split('%^&');
-      this.todos.push({id: key, created: createdTime, title: title, comment: comment});
+      const [createdTime, title, comment, done] = localStorage.getItem(key).split('%^&');
+      this.todos.push({id: key, created: createdTime, title: title, comment: comment, done: done});
     }
   },
 
@@ -72,9 +72,10 @@ app.component('todoform', {
       }
       const createdTime = Date.now();
       const newId = setId();
+      const isDone = false;
       const glue = '%^&';
-      const itemValue = createdTime + glue + this.todo.title + glue + this.todo.comment;
-      this.todos.push({id: newId, created: createdTime, title: this.todo.title, comment: this.todo.comment});
+      const itemValue = createdTime + glue + this.todo.title + glue + this.todo.comment + glue + isDone;
+      this.todos.push({id: newId, created: createdTime, title: this.todo.title, comment: this.todo.comment, done: isDone});
       localStorage.setItem(newId, itemValue);
     },
   },
