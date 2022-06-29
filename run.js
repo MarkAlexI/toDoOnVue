@@ -74,7 +74,7 @@ app.component('todoform', {
       const newId = setId();
       const isDone = false;
       const glue = '%^&';
-      const itemValue = createdTime + glue + this.todo.title + glue + this.todo.comment + glue + isDone;
+      const itemValue = [createdTime, this.todo.title, this.todo.comment, isDone].join(glue);
       this.todos.push({id: newId, created: createdTime, title: this.todo.title, comment: this.todo.comment, done: isDone});
       localStorage.setItem(newId, itemValue);
     },
