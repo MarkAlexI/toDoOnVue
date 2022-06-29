@@ -21,6 +21,7 @@
                   :index="startIndex + index + 1"
                   :key="todo.id"
                   v-on:tododelete="remove"
+                  v-on:todoupdate="update"
                   class="todoitem"
         ></todoitem>
       </div>

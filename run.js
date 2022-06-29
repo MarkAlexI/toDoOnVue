@@ -1,5 +1,7 @@
 'use strict';
 
+const glue = '%^&';
+
 const app = Vue.createApp({
   data() {
      return {
@@ -15,6 +17,13 @@ const app = Vue.createApp({
       localStorage.removeItem(removedTodo);
       this.todos.splice(index, 1);
     },
+    update: function(index, key) {
+      let [createdTime, title, comment, isDone] = localStorage.getItem(key).split(glue);
+      isDone = (isDone === "false" ? true : false);
+      const itemValue = [createdTime, title, comment, isDone].join(glue);
+      localStorage.setItem(key, itemValue);
+      this.todos.splice(this.todos[index], 1, {id: key, created: createdTime, title: title, comment: comment, done: isDone});
+    },
   },
   
   created: function() {
@@ -25,7 +34,7 @@ const app = Vue.createApp({
     for (let i = 0; i < localStorage.length; i++) {
       let key = localStorage.key(i);
       const [createdTime, title, comment, done] = localStorage.getItem(key).split('%^&');
-      this.todos.push({id: key, created: createdTime, title: title, comment: comment, done: done});
+      this.todos.push({id: key, created: createdTime, title: title, comment: comment, done: Boolean(done)});
     }
   },
 
@@ -73,7 +82,6 @@ app.component('todoform', {
       const createdTime = Date.now();
       const newId = setId();
       const isDone = false;
-      const glue = '%^&';
       const itemValue = [createdTime, this.todo.title, this.todo.comment, isDone].join(glue);
       this.todos.push({id: newId, created: createdTime, title: this.todo.title, comment: this.todo.comment, done: isDone});
       localStorage.setItem(newId, itemValue);
@@ -83,15 +91,18 @@ app.component('todoform', {
 
 app.component('todoitem', {
   props: ['todo', 'index'],
-  template: `<div v-bind:class="{done: todo.done}">
+  template: `<div v-bind:class="{done: todo.done === true}">
               <p><span>Number of record: </span>{{index}}
               <br> <span>Title: </span>{{todo.title}} <br> <span>Text: </span>{{todo.comment}} </p>
               <button v-on:click="todoDelete(index - 1)">Delete</button>
-              <button v-on:click="todo.done = !todo.done">Done</button>
+              <button v-on:click="todoUpdate(index - 1, todo.id)">{{todo.done ? "Task done" : "Task undone"}}</button>
             </div>`,
   methods: {
     todoDelete: function(index) {
       this.$emit('tododelete', index);
+    },
+    todoUpdate: function(index, key) {
+      this.$emit('todoupdate', index, key);
     },
   },
 });
