@@ -105,8 +105,8 @@ app.component('todofilter', {
               <input name="filter" type="radio" v-model="type" value="undone">
             </div>`,
   methods: {
-    filterTodos() {
-      
+    filterTodos: function(type) {
+      console.log(type);
     },
   },
 });
