@@ -97,6 +97,9 @@ app.component('todofilter', {
     },
   },
   template: `<div>
+              <label for="filter">
+                View tasks: 
+              </label
               <input name="filter" type="radio" v-model="type" value="all">
               <input name="filter" type="radio" v-model="type" value="done">
               <input name="filter" type="radio" v-model="type" value="undone">
