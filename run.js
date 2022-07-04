@@ -89,6 +89,25 @@ app.component('todoform', {
   },
 });
 
+app.component('todofilter', {
+  props: [],
+  data() {
+    return {
+      type: 'all',
+    },
+  },
+  template: `<div>
+              <input name="filter" type="radio" v-model="type" value="all">
+              <input name="filter" type="radio" v-model="type" value="done">
+              <input name="filter" type="radio" v-model="type" value="undone">
+            </div>`,
+  methods: {
+    filterTodos() {
+      
+    },
+  },
+});
+
 app.component('todoitem', {
   props: ['todo', 'index'],
   template: `<div v-bind:class="{done: todo.done === true}">
