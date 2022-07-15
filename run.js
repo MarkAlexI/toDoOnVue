@@ -94,7 +94,7 @@ app.component('todofilter', {
   data() {
     return {
       type: 'all',
-    },
+    }
   },
   template: `<div>
               <label for="filter">
