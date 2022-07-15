@@ -33,7 +33,8 @@ const app = Vue.createApp({
     }
     for (let i = 0; i < localStorage.length; i++) {
       let key = localStorage.key(i);
-      const [createdTime, title, comment, done] = localStorage.getItem(key).split('%^&');
+      if (localStorage.getItem(key).indexOf(glue) === -1) continue;
+      const [createdTime, title, comment, done] = localStorage.getItem(key).split(glue);
       this.todos.push({id: key, created: createdTime, title: title, comment: comment, done: Boolean(done)});
     }
   },
@@ -61,7 +62,7 @@ app.component('todoform', {
   props: ['todos'],
   data() {
     return {
-      todo: {title: 'Note', comment: 'Do something.'},
+      todo: {title: 'Note', comment: 'Do something.'}
     }
   },
   template: `<div>
