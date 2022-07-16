@@ -10,7 +10,7 @@
 <body>
   <div id="todoapp">
     <h2>ToDo List</h2>
-      <div>
+      <div v-on:selectfilter="changeType" >
         <todoform :todos="todos"
                   class="todoform"
         ></todoform>

@@ -8,10 +8,16 @@ const app = Vue.createApp({
        message: 'Hello from Vue',
        todos: [],
        page: 1,
+       type: 'all',
      }
   },
   
   methods: {
+    changeType: function(type) {
+      console.log(type, 1);
+      this.type = type;
+      console.log(this.type);
+    },
     remove: function(index) {
       let removedTodo = this.todos[index].id;
       localStorage.removeItem(removedTodo);
@@ -40,7 +46,7 @@ const app = Vue.createApp({
   },
 
   computed: {
-    freshTodos: function() {
+    freshTodos: function() {console.log(this.type);
       return this.todos.slice(this.startIndex, this.endIndex);
     },
 
@@ -101,15 +107,15 @@ app.component('todofilter', {
               <label for="filter">
                 View tasks: 
               </label>
-              <select id="filter" v-model="type" v-on:change="filterTodos" >
+              <select id="filter" v-model="type" v-on:change="selectFilter" >
                 <option value="all">All</option>
                 <option value="done">Done</option>
                 <option value="undone">Undone</option>
               </select>
             </div>`,
   methods: {
-    filterTodos: function(event) {
-      console.log(type);
+    selectFilter: function(event) {
+      this.$emit('selectfilter', this.type);
     },
   },
 });
