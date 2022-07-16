@@ -101,12 +101,14 @@ app.component('todofilter', {
               <label for="filter">
                 View tasks: 
               </label>
-              <input name="filter" type="radio" v-model="type" value="all">
-              <input name="filter" type="radio" v-model="type" value="done">
-              <input name="filter" type="radio" v-model="type" value="undone">
+              <select id="filter" v-model="type" v-on:change="filterTodos" >
+                <option value="all">All</option>
+                <option value="done">Done</option>
+                <option value="undone">Undone</option>
+              </select>
             </div>`,
   methods: {
-    filterTodos: function(type) {
+    filterTodos: function(event) {
       console.log(type);
     },
   },
