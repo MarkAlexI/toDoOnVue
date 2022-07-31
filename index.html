@@ -16,13 +16,13 @@
         ></todoform>
       </div>
       <div>
-        <todoitem v-for="(todo, index) in freshTodos"
+        <todoitem v-for="(todo, i) in freshTodos"
                   :todo="todo"
-                  :index="startIndex + index + 1"
+                  :index="startIndex + i + 1"
                   :key="todo.id"
                   v-on:tododelete="remove"
                   v-on:todoupdate="update"
-                  class="todoitem"
+                  :class="{done: todo.done}"
         ></todoitem>
       </div>
       <todofilter v-if="todos.length > 0"
