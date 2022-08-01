@@ -28,7 +28,7 @@ const app = Vue.createApp({
       isDone = (isDone === "false" ? true : false);
       const itemValue = [createdTime, title, comment, isDone].join(glue);
       localStorage.setItem(key, itemValue);
-      this.todos.splice(this.todos[index], 1, {id: key, created: +createdTime, title: title, comment: comment, done: isDone});
+      this.todos.splice(index, 1, {id: key, created: +createdTime, title: title, comment: comment, done: isDone});
     },
   },
   
@@ -47,7 +47,7 @@ const app = Vue.createApp({
   },
 
   computed: {
-    freshTodos: function() {console.log(this.todos[this.startIndex]);
+    freshTodos: function() {
       return this.todos.slice(this.startIndex, this.endIndex);
     },
 
@@ -124,7 +124,7 @@ app.component('todofilter', {
 app.component('todoitem', {
   props: ['todo', 'index'],
   template: `<div class="todoitem">
-              <p><span>Number of record: </span>{{index}}{{todo.id}}{{todo.done}}
+              <p><span>Number of record: </span>{{index}}
               <br> <span>Title: </span>{{todo.title}} <br> <span>Text: </span>{{todo.comment}} </p>
               <button v-on:click="todoDelete(index - 1)">Delete</button>
               <button v-on:click="todoupdate(index - 1, todo.id)">{{todo.done ? "Task done" : "Task undone"}}</button>
