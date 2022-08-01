@@ -34,7 +34,19 @@ const app = Vue.createApp({
   
   created: function() {
     if (localStorage.length === 0) {
-      this.todos.push({id: 'gu3c8lRTm', created: 1, title: 'First', comment: 'Wright code', done: false}, {id: '8orR6Ki90', created: 2, title: '17 June', comment: 'Buy flowers', done: true});
+      this.todos.push({
+        id: 'gu3c8lRTm',
+        created: 1,
+        title: 'First',
+        comment: 'Wright code',
+        done: false
+      }, {
+        id: '8orR6Ki90',
+        created: 2,
+        title: '17 June',
+        comment: 'Buy flowers',
+        done: true
+      });
       return;
     }
     for (let i = 0; i < localStorage.length; i++) {
@@ -42,8 +54,16 @@ const app = Vue.createApp({
       if (localStorage.getItem(key).indexOf(glue) === -1) continue;
       let [createdTime, title, comment, done] = localStorage.getItem(key).split(glue);
       done = (done === "false" ? false : true);
-      this.todos.push({id: key, created: +createdTime, title: title, comment: comment, done: done});
+      this.todos
+        .push({
+          id: key,
+          created: +createdTime,
+          title: title,
+          comment: comment,
+          done: done
+        });
     }
+    this.todos.sort((a, b) => a.created - b.created);
   },
 
   computed: {
