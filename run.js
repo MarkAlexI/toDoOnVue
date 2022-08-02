@@ -22,6 +22,9 @@ const app = Vue.createApp({
       let removedTodo = this.todos[index].id;
       localStorage.removeItem(removedTodo);
       this.todos.splice(index, 1);
+      if (this.freshTodos.length === 0) {
+        this.page = Math.max(0, --this.page);
+      };
     },
     update: function(index, key) {
       let [createdTime, title, comment, isDone] = localStorage.getItem(key).split(glue);
