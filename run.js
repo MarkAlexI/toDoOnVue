@@ -36,7 +36,22 @@ const app = Vue.createApp({
   },
   
   created: function() {
-    if (localStorage.length === 0) {
+    for (let i = 0; i < localStorage.length; i++) {
+      let key = localStorage.key(i);
+      if (localStorage.getItem(key).indexOf(glue) === -1) continue;
+      let [createdTime, title, comment, done] = localStorage.getItem(key).split(glue);
+      done = (done === "false" ? false : true);
+      this.todos
+        .push({
+          id: key,
+          created: +createdTime,
+          title: title,
+          comment: comment,
+          done: done
+        });
+    }
+    
+    if (this.todos.length === 0) {
       this.todos.push({
         id: 'gu3c8lRTm',
         created: 1,
@@ -52,20 +67,7 @@ const app = Vue.createApp({
       });
       return;
     }
-    for (let i = 0; i < localStorage.length; i++) {
-      let key = localStorage.key(i);
-      if (localStorage.getItem(key).indexOf(glue) === -1) continue;
-      let [createdTime, title, comment, done] = localStorage.getItem(key).split(glue);
-      done = (done === "false" ? false : true);
-      this.todos
-        .push({
-          id: key,
-          created: +createdTime,
-          title: title,
-          comment: comment,
-          done: done
-        });
-    }
+    
     this.todos.sort((a, b) => a.created - b.created);
   },
 
