@@ -14,9 +14,7 @@ const app = Vue.createApp({
   
   methods: {
     changeType: function(type) {
-      console.log(type);
       this.type = type;
-      console.log(this.type);
     },
     remove: function(index) {
       let removedTodo = this.todos[index].id;
@@ -73,7 +71,18 @@ const app = Vue.createApp({
 
   computed: {
     freshTodos: function() {
-      return this.todos.slice(this.startIndex, this.endIndex);
+      let arr = this.todos.slice();
+      console.log(this.type);
+      if (this.type === 'all') {
+        void '@';
+      }
+      if (this.type === 'done') {
+        arr = arr.filter(el => el.done === true);
+      }
+      if (this.type === 'undone') {
+        arr = arr.filter(el => el.done === false);
+      }
+      return arr.slice(this.startIndex, this.endIndex);
     },
 
     startIndex() {
