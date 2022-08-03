@@ -72,7 +72,7 @@ const app = Vue.createApp({
   computed: {
     freshTodos: function() {
       let arr = this.todos.slice();
-      console.log(this.type);
+
       if (this.type === 'all') {
         void '@';
       }
@@ -82,7 +82,11 @@ const app = Vue.createApp({
       if (this.type === 'undone') {
         arr = arr.filter(el => el.done === false);
       }
-      return arr.slice(this.startIndex, this.endIndex);
+      return arr;
+    },
+
+    paginatedTodos() {
+      return this.freshTodos.slice(this.startIndex, this.endIndex);
     },
 
     startIndex() {
@@ -90,11 +94,11 @@ const app = Vue.createApp({
     },
 
     endIndex() {
-      return Math.min(this.page * 3, this.todos.length);
+      return Math.min(this.page * 3, this.freshTodos.length);
     },
 
     hasNextPage() {
-      return this.todos.length > this.endIndex;
+      return this.freshTodos.length > this.endIndex;
     },
   }
 });

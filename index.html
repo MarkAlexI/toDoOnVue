@@ -14,7 +14,7 @@
                 class="todoform"
       ></todoform>
       <div>
-        <todoitem v-for="(todo, i) in freshTodos"
+        <todoitem v-for="(todo, i) in paginatedTodos"
                   :todo="todo"
                   :index="startIndex + i + 1"
                   :key="todo.id"
@@ -26,10 +26,10 @@
       <todofilter v-if="todos.length > 0"
                   v-on:selectfilter="changeType"
       ></todofilter>
-      <template v-if="todos.length > 0">
+      <template v-if="freshTodos.length">
         <div class="pagination">
           <p>Page {{ page }}.</p>
-          <p>Records {{ startIndex + 1 }} - {{ endIndex }} from {{ todos.length }}.</p>
+          <p>Records {{ startIndex + 1 }} - {{ endIndex }} from {{ freshTodos.length }}.</p>
           <br>
           <button
                   v-if="page > 1"
