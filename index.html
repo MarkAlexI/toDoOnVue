@@ -10,11 +10,9 @@
 <body>
   <div id="todoapp">
     <h2>ToDo List</h2>
-      <div v-on:selectfilter="changeType" >
-        <todoform :todos="todos"
-                  class="todoform"
-        ></todoform>
-      </div>
+      <todoform :todos="todos"
+                class="todoform"
+      ></todoform>
       <div>
         <todoitem v-for="(todo, i) in freshTodos"
                   :todo="todo"
@@ -26,7 +24,7 @@
         ></todoitem>
       </div>
       <todofilter v-if="todos.length > 0"
-      
+                  v-on:selectfilter="changeType"
       ></todofilter>
       <template v-if="todos.length > 0">
         <div class="pagination">

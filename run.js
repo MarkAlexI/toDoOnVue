@@ -14,7 +14,7 @@ const app = Vue.createApp({
   
   methods: {
     changeType: function(type) {
-      console.log(type, 1);
+      console.log(type);
       this.type = type;
       console.log(this.type);
     },
