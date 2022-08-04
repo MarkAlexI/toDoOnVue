@@ -100,7 +100,16 @@ const app = Vue.createApp({
     hasNextPage() {
       return this.freshTodos.length > this.endIndex;
     },
-  }
+  },
+  
+  watch: {
+    paginatedTodos() {
+      if (this.paginatedTodos.length === 0
+          && this.page > 1) {
+        this.page -= 1;
+      }
+    }
+  },
 });
 
 app.component('todoform', {
