@@ -16,7 +16,8 @@ const app = Vue.createApp({
     changeType: function(type) {
       this.type = type;
     },
-    remove: function(index) {
+    remove: function(key) {
+      let index = this.todos.findIndex(el => el.id === key);
       let removedTodo = this.todos[index].id;
       localStorage.removeItem(removedTodo);
       this.todos.splice(index, 1);
@@ -24,7 +25,8 @@ const app = Vue.createApp({
         this.page = Math.max(0, --this.page);
       };
     },
-    update: function(index, key) {
+    update: function(key) {
+      let index = this.todos.findIndex(el => el.id === key);
       let [createdTime, title, comment, isDone] = localStorage.getItem(key).split(glue);
       isDone = (isDone === "false" ? true : false);
       const itemValue = [createdTime, title, comment, isDone].join(glue);
@@ -173,15 +175,15 @@ app.component('todoitem', {
   template: `<div class="todoitem">
               <p><span>Number of record: </span>{{index}}
               <br> <span>Title: </span>{{todo.title}} <br> <span>Text: </span>{{todo.comment}} </p>
-              <button v-on:click="todoDelete(index - 1)">Delete</button>
-              <button v-on:click="todoupdate(index - 1, todo.id)">{{todo.done ? "Task done" : "Task undone"}}</button>
+              <button v-on:click="todoDelete(todo.id)">Delete</button>
+              <button v-on:click="todoupdate(todo.id)">{{todo.done ? "Task done" : "Task undone"}}</button>
             </div>`,
   methods: {
-    todoDelete: function(index) {
-      this.$emit('tododelete', index);
+    todoDelete: function(key) {
+      this.$emit('tododelete', key);
     },
-    todoupdate: function(index, key) {
-      this.$emit('todoupdate', index, key);
+    todoupdate: function(key) {
+      this.$emit('todoupdate', key);
     },
   },
 });
