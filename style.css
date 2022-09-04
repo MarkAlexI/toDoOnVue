@@ -40,14 +40,14 @@ span {
 }
 
 .todoform input {
-  margin: 0px 0px 10px 0px;
+  margin: 0px 25px 10px 25px;
   min-width: 100px;
   box-sizing:border-box;
   border: 1px solid black;
 }
 
 .todoform button {
-  margin-left: 20px;
+  margin-left: 25px;
   margin-bottom: 10px;
   height: 100%;
   padding: 10px;
@@ -88,6 +88,11 @@ button:hover {
   border: 2px solid rgb(118, 20, 20);
 }
 
+.todofilter {
+  margin-top: 30px;
+  padding: 0 25px;
+}
+
 .pagination {
-  padding: 0px 30px 10px 30px;
+  padding: 0px 25px 10px 25px;
 }

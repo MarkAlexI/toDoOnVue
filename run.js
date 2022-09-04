@@ -175,7 +175,7 @@ app.component('todofilter', {
       type: 'all',
     }
   },
-  template: `<div>
+  template: `<div class="todofilter">
               <label for="filter">
                 View tasks: 
               </label>
