@@ -36,6 +36,14 @@ const app = Vue.createApp({
   },
   
   created: function() {
+    const windowData = Object.fromEntries(
+      new URL(window.location).searchParams.entries()
+    );
+    
+    if (windowData.page) {
+      this.page = windowData.page;
+    }
+    
     for (let i = 0; i < localStorage.length; i++) {
       let key = localStorage.key(i);
       if (localStorage.getItem(key).indexOf(glue) === -1) continue;
@@ -72,6 +80,12 @@ const app = Vue.createApp({
   },
 
   computed: {
+    pageStateOptions() {
+      return {
+        page: this.page,
+      };
+    },
+    
     freshTodos: function() {
       let arr = this.todos.slice();
 
@@ -105,6 +119,14 @@ const app = Vue.createApp({
   },
   
   watch: {
+    pageStateOptions(value) {
+      window.history.pushState(
+        null,
+        document.title,
+        `${window.location.pathname}?page=${value.page}`
+      );
+    },
+    
     paginatedTodos() {
       if (this.paginatedTodos.length === 0
           && this.page > 1) {
